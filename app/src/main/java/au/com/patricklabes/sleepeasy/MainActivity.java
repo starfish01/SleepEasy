@@ -14,7 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        notifyMe();
+
+        Intent serviceIntent = new Intent(this, BatteryService.class);
+        startService(serviceIntent);
+
+        //notifyMe();
 
     }
 
