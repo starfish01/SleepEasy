@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         this.registerReceiver(this.mBatInfoReceiver,
                 new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
-
+/*
         this.registerReceiver(this.chargeReceiver,
                 new IntentFilter(Intent.ACTION_POWER_CONNECTED));
 
         this.registerReceiver(this.chargeReceiveroff,
                 new IntentFilter(Intent.ACTION_POWER_DISCONNECTED));
-
+*/
 
     }
 
@@ -42,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             int level = intent.getIntExtra("level",0);
             textView.setText(String.valueOf(level)+"%");
+
+            String action = intent.getAction();
+
+            info2.setText(action);
+
+            if(action.equals(Intent.ACTION_POWER_CONNECTED)){
+                info2.setText("Connected");
+            }else if(action.equals(Intent.ACTION_POWER_DISCONNECTED)){
+                info2.setText("Disconnected");
+            }
 
 
         }
