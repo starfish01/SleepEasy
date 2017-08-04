@@ -21,64 +21,46 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView)this.findViewById(R.id.infoText);
         info2 = (TextView)this.findViewById(R.id.info2);
 
-/*
-        this.registerReceiver(this.mBatInfoReceiver,
-                new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-*/
-        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = getApplicationContext().registerReceiver(null, ifilter);
+        startBatteryService();
 
-        /*
-        https://stackoverflow.com/questions/3291655/get-battery-level-and-state-in-android
-         */
 
-        BatteryManager bm = (BatteryManager)getSystemService(BATTERY_SERVICE);
-        int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-
-        int status = batteryStatus.getIntExtra("level", -1);
-        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL;
-
-        textView.setText(String.valueOf(status));
 
 
 
     }
 
 
+    public void startBatteryService(){
+
+        Intent intent = new Intent(this, BatteryService.class);
+        startService(intent);
+
+
+
+        //the idea is to move this over to battery service
+        this.registerReceiver(this.mBatInfoReceiver,
+                new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+    }
+
 
 
     private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            int level = intent.getIntExtra("level",0);
-            textView.setText(String.valueOf(level)+"%");
 
-            String action = intent.getAction();
+            IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+            Intent batteryStatus = getApplicationContext().registerReceiver(null, ifilter);
 
-            info2.setText(action);
+            int status = batteryStatus.getIntExtra("level", -1);
 
-            if(action.equals(Intent.ACTION_POWER_CONNECTED)){
-                info2.setText("Connected");
-            }else if(action.equals(Intent.ACTION_POWER_DISCONNECTED)){
-                info2.setText("Disconnected");
-            }
+            int pluggedIn = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,6);
+
+            textView.setText(String.valueOf(status));
+            info2.setText(String.valueOf(pluggedIn));
 
 
-        }
-    };
 
-    private BroadcastReceiver chargeReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-           info2.setText("power connected");
-        }
-    };
-
-    private BroadcastReceiver chargeReceiveroff = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            info2.setText("power disconnected");
         }
     };
 
