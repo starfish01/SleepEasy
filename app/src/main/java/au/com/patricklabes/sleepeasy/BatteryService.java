@@ -1,34 +1,32 @@
 package au.com.patricklabes.sleepeasy;
 
 import android.app.IntentService;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.os.PowerManager;
 import android.support.annotation.Nullable;
 
 /**
  * Created by patrick on 4/08/2017.
  */
 
-public class BatteryService extends IntentService {
+public class BatteryService extends BroadcastReceiver {
 
-    public BatteryService(){
-        super("My_Worker_Thread");
-    }
+
+
+    /*
+    https://stackoverflow.com/questions/4459058/alarm-manager-example
+
+    need to look into; AlarmManager, PowerManager
+
+
+
+     */
 
     @Override
-    public int onStartCommand(Intent intent,int flags, int startId){
+    public void onReceive(Context context, Intent intent) {
 
-        return super.onStartCommand(intent,flags,startId);
-    }
-
-
-    @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-
-        synchronized (this)
-        {
-            int count =0;
-
-        }
 
 
 
