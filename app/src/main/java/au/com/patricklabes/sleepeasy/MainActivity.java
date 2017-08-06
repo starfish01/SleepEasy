@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         startBatteryService();
 
+        BatteryChecker bc = new BatteryChecker();
+        bc.setAlarm(getApplicationContext());
 
 
 
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startBatteryService(){
 
-        Intent intent = new Intent(this, BatteryService.class);
+        Intent intent = new Intent(this, BatteryChecker.class);
         startService(intent);
 
 

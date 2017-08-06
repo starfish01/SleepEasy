@@ -1,34 +1,45 @@
 package au.com.patricklabes.sleepeasy;
 
-import android.app.IntentService;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.app.Service;
 import android.content.Intent;
-import android.os.PowerManager;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 /**
  * Created by patrick on 4/08/2017.
  */
 
-public class BatteryService extends BroadcastReceiver {
+public class BatteryService extends Service {
 
+    BatteryChecker batteryChecker = new BatteryChecker();
 
-
-    /*
-    https://stackoverflow.com/questions/4459058/alarm-manager-example
-
-    need to look into; AlarmManager, PowerManager
-
-
-
-     */
+    public void onCreate() {
+        super.onCreate();
+    }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public int onStartCommand(Intent intent, int flags, int startId){
+        batteryChecker.setAlarm(this);
+        return START_STICKY;
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId){
+        batteryChecker.setAlarm(this);
+    }
 
 
-
-
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }
+
+
+
+
+
+
+
+
