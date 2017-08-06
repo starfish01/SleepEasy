@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         BatteryChecker bc = new BatteryChecker();
         bc.setAlarm(getApplicationContext());
 
+        //faild to submit so i had to add something
+
 
 
 
