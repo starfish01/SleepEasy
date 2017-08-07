@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 /**
- * Created by patri on 07-Aug-17.
+ * Created by patrick on 07-Aug-17.
  */
 
 public class BatteryHealth extends Activity{
