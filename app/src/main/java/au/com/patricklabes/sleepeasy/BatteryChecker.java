@@ -31,6 +31,9 @@ public class BatteryChecker extends BroadcastReceiver {
 
         //code goes here
 
+        BatteryHealth bh = new BatteryHealth();
+        //int charge = bh.getChargeStatus();
+
         Toast.makeText(context,"Alarm", Toast.LENGTH_LONG).show();
 
         wl.release();
@@ -40,7 +43,10 @@ public class BatteryChecker extends BroadcastReceiver {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, BatteryChecker.class);
         PendingIntent pi = PendingIntent.getBroadcast(context,0,i,0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60 *30, pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pi);
+
+
+
     }
 
     public void cancelAlarm(Context context){
