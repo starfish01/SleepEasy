@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -31,10 +32,15 @@ public class BatteryChecker extends BroadcastReceiver {
 
         //code goes here
 
-        BatteryHealth bh = new BatteryHealth();
-        //int charge = bh.getChargeStatus();
 
-        Toast.makeText(context,"Alarm", Toast.LENGTH_LONG).show();
+        Log.d("the enter","0");
+
+        //Intent intent48 = new Intent(context, BatteryHealth.class);
+
+        BatteryHealth bh = new BatteryHealth();
+        int charge = bh.getChargeStatus(context);
+
+        Toast.makeText(context,"hello", Toast.LENGTH_LONG).show();
 
         wl.release();
     }
