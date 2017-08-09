@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView)this.findViewById(R.id.infoText);
         info2 = (TextView)this.findViewById(R.id.info2);
 
-        startBatteryService();
+        //startBatteryService();
 
         BatteryChecker bc = new BatteryChecker();
         bc.setAlarm(getApplicationContext());
@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void startBatteryService(){
 
-        Intent intent = new Intent(this, BatteryChecker.class);
-        startService(intent);
+        //Intent intent = new Intent(this, BatteryChecker.class);
+        //startService(intent);
 
 
 
