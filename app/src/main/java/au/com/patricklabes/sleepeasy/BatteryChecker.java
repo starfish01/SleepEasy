@@ -23,6 +23,7 @@ public class BatteryChecker extends BroadcastReceiver {
 
     need to look into; AlarmManager,0000 PowerManager
 
+       changes were made..
      */
 
     @Override
