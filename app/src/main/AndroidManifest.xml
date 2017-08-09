@@ -22,8 +22,9 @@
         <receiver android:name=".BatteryChecker" android:process=":remote"/>
 
 
-    
-    
+
+
+
     </application>
 
 

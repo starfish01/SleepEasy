@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.PowerManager;
 import android.widget.Toast;
 
+import static android.R.attr.start;
+
 /**
  * Created by patrick on 4/08/2017.
  */
@@ -31,7 +33,10 @@ public class BatteryChecker extends BroadcastReceiver {
 
         //code goes here
 
-        BatteryHealth bh = new BatteryHealth();
+        Intent intent1 = new Intent(context, BatteryHealth.class);
+        context.startActivity(intent1);
+
+        //BatteryHealth bh = new BatteryHealth();
         //int charge = bh.getChargeStatus();
 
         Toast.makeText(context,"Alarm", Toast.LENGTH_LONG).show();
