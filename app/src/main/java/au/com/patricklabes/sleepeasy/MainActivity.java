@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
             textView.setText(String.valueOf(perstat));
             info2.setText(String.valueOf(pluggedIn));
 
