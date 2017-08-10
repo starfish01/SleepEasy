@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,6 +25,8 @@ public class BatteryChecker extends BroadcastReceiver {
 
      */
 
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
         PowerManager pm =(PowerManager) context.getSystemService(Context.POWER_SERVICE);
@@ -37,12 +40,27 @@ public class BatteryChecker extends BroadcastReceiver {
 
         //Intent intent48 = new Intent(context, BatteryHealth.class);
 
-        BatteryHealth bh = new BatteryHealth();
-        int charge = bh.getChargeStatus(context);
+        //BatteryHealth bh = new BatteryHealth();
+        //int charge = bh.getChargeStatus(context);
 
-        Toast.makeText(context,"hello", Toast.LENGTH_LONG).show();
+        //BatteryHealth batteryHealth = new BatteryHealth();
+        //int batteryPercent = batteryHealth.getBatteryPercent();
+
+
+        SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
+
+
+
+        int stats = prefs.getInt("BATTERY_PERCENT",0);
+
+        Log.d("StatusCaller",String.valueOf(stats));
+
+
+        Toast.makeText(context,String.valueOf(stats), Toast.LENGTH_LONG).show();
 
         wl.release();
+
+
     }
 
     public void setAlarm(Context context){
