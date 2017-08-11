@@ -8,21 +8,9 @@ public class BatteryHealth {
 
     private int batteryPercent, charging;
 
-    public int getBatteryPercent() {
-        return batteryPercent;
-    }
 
-    public void setBatteryPercent(int batteryPercent) {
-        this.batteryPercent = batteryPercent;
-    }
 
-    public int getCharging() {
-        return charging;
-    }
 
-    public void setCharging(int charging) {
-        this.charging = charging;
-    }
 
 
 
