@@ -35,8 +35,6 @@ public class BatteryChecker extends BroadcastReceiver {
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"");
         wl.acquire();
 
-        //code goes here
-
 
         Log.d("the enter","0");
 
@@ -63,6 +61,12 @@ public class BatteryChecker extends BroadcastReceiver {
     }
 
     public void setAlarm(Context context){
+
+        //AlarmManager.setExact use to set to start recieving after certain time and then to cancel at
+        //specified time
+        // https://developer.android.com/reference/android/app/AlarmManager.html#setExact(int, long, android.app.PendingIntent)
+
+
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, BatteryChecker.class);
         PendingIntent pi = PendingIntent.getBroadcast(context,0,i,0);
