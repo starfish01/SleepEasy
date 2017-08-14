@@ -32,4 +32,12 @@
             tools:layout_editor_absoluteY="231dp" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/activateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activate"
+        tools:layout_editor_absoluteX="254dp"
+        tools:layout_editor_absoluteY="445dp" />
+
 </android.support.constraint.ConstraintLayout>

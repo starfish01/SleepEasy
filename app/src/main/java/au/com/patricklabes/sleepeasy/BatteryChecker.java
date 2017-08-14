@@ -40,6 +40,10 @@ public class BatteryChecker extends BroadcastReceiver {
 
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.getApplicationContext().registerReceiver(null, ifilter);
+
+
+
+
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
         boolean fullyCharged = status == BatteryManager.BATTERY_STATUS_FULL;
@@ -73,6 +77,8 @@ public class BatteryChecker extends BroadcastReceiver {
 
         // testing the strain on the battery over the day
         am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
+
+
 
 
 
