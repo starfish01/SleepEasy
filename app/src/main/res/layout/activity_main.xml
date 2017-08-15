@@ -6,9 +6,15 @@
     android:layout_height="match_parent"
     tools:context="au.com.patricklabes.sleepeasy.MainActivity">
 
+   <LinearLayout
+       android:layout_width="344dp"
+       android:layout_height="495dp"
+       tools:layout_editor_absoluteY="8dp"
+       tools:layout_editor_absoluteX="8dp">
+
     <LinearLayout
-        android:layout_width="143dp"
-        android:layout_height="495dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
@@ -30,14 +36,18 @@
             android:text="TextView"
             tools:layout_editor_absoluteX="159dp"
             tools:layout_editor_absoluteY="231dp" />
+
+        <Button
+            android:id="@+id/activateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Activate"
+            tools:layout_editor_absoluteX="254dp"
+            tools:layout_editor_absoluteY="445dp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/activateBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activate"
-        tools:layout_editor_absoluteX="254dp"
-        tools:layout_editor_absoluteY="445dp" />
+
+   </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
