@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        activateBtn = (Button)this.findViewById(R.id.activateBtn);
-        activateBtn.setOnClickListener(this);
-        textView = (TextView)this.findViewById(R.id.infoText);
-        info2 = (TextView)this.findViewById(R.id.info2);
+        //activateBtn = (Button)this.findViewById(R.id.activateBtn);
+        //activateBtn.setOnClickListener(this);
+        //textView = (TextView)this.findViewById(R.id.infoText);
+        //info2 = (TextView)this.findViewById(R.id.info2);
 
 
        // startBatteryService();
