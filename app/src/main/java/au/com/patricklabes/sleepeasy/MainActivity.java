@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alarmSwitch.setOnClickListener(this);
         flashSwitch.setOnClickListener(this);
 
+
+
         buttonStates();
 
 
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
          switch (v.getId()){
              case R.id.switch_flash:
+
 
                  break;
              case R.id.switch_ringer:
@@ -95,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void buttonStates(){
         SharedPreferences prefs = this.getSharedPreferences("au.com.shifttech", 0);
         boolean activated = prefs.getBoolean("ACTIVATED",false);
+
+
 
 
         if (activated){
