@@ -27,11 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences prefs = this.getSharedPreferences("au.com.shifttech", 0);
 
 
-
-
-
-
-
         activateBtn = (Button)this.findViewById(R.id.btn_activate);
         activateBtn.setOnClickListener(this);
 
@@ -99,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences prefs = this.getSharedPreferences("au.com.shifttech", 0);
         boolean activated = prefs.getBoolean("ACTIVATED",false);
 
-
+// had to add something
 
 
         if (activated){
