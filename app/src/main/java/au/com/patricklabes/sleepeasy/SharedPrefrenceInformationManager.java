@@ -1,21 +1,50 @@
 package au.com.patricklabes.sleepeasy;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.View;
 
 /**
  * Created by patri on 19-Aug-17.
  */
 
-public class SharedPrefrenceInformationManager {
+ class SharedPrefrenceInformationManager {
 
-    public SharedPrefrenceInformationManager(Context context){
+    private SharedPreferences prefs;
+    private Context context;
+
+     SharedPrefrenceInformationManager(Context context){
+        this.context = context;
+         prefs = context.getSharedPreferences("au.com.shifttech", 0);
+
+    }
+
+
+     int getStartTime(){
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
+        int startTime = prefs.getInt("STARTTIME",22);
 
+        return startTime;
+    }
+
+     int getEndTime(){
+        SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
+
+        int endTime = prefs.getInt("ENDTIME",2);
+
+        return endTime;
+    }
+
+    boolean activationButton(){
+        return prefs.getBoolean("ACTIVATED",false);
+    }
+
+    void changeActivationButtonStatus(boolean position){
+        if (position){
+            prefs.edit().putBoolean("ACTIVATED",true).apply();
+        }else {
+            prefs.edit().putBoolean("ACTIVATED",false).apply();
+        }
 
     }
 
