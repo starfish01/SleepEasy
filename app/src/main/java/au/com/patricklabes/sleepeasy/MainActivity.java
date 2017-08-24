@@ -2,6 +2,7 @@ package au.com.patricklabes.sleepeasy;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,12 +14,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView textView, info2;
     private Button activateBtn;
-    private Switch alarmSwitch, flashSwitch;
+    private Switch ringerSwitch, flashSwitch;
     private int batteryPercent, pluggedIn;
     private EditText inputStartTime, inputEndTime;
 
 
-    SharedPrefrenceInformationManager mI = new SharedPrefrenceInformationManager(this);
+    SharedPrefrenceInformationManager mI;
 
 
 
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mI = new SharedPrefrenceInformationManager(this);
+
+        Log.d("Crash issue", "0");
 
         inputStartTime = (EditText)this.findViewById(R.id.input_startTime);
         inputEndTime = (EditText)this.findViewById(R.id.input_endTime);
@@ -34,19 +38,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         activateBtn = (Button)this.findViewById(R.id.btn_activate);
         activateBtn.setOnClickListener(this);
 
-        alarmSwitch = (Switch)this.findViewById(R.id.switch_ringer);
+        ringerSwitch = (Switch)this.findViewById(R.id.switch_ringer);
         flashSwitch = (Switch)this.findViewById(R.id.switch_flash);
 
-        alarmSwitch.setOnClickListener(this);
+        ringerSwitch.setOnClickListener(this);
         flashSwitch.setOnClickListener(this);
 
         //temp while i iron the rest out
-        //inputStartTime.setFocusable(false);
-        //inputEndTime.setFocusable(false);
+        inputStartTime.setFocusable(false);
+        inputEndTime.setFocusable(false);
 
 
 
-        //buttonStates();
+        buttonStates();
 
 
     }
@@ -59,10 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
          switch (v.getId()){
              case R.id.switch_flash:
-
-
+                 switchButtonChecker("FLASH");
                  break;
              case R.id.switch_ringer:
+                 switchButtonChecker("RINGER");
 
                  break;
              case R.id.btn_activate:
@@ -73,11 +77,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void saveStates(){
-
-
-
+    private void switchButtonChecker(String switchThatWasFlipped){
+        mI.setSwitch(switchThatWasFlipped);
     }
+
+
 
     private void activeBtnChecker(){
         BatteryChecker bc = new BatteryChecker();
@@ -95,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     public void buttonStates(){
 
         //Activation Button
@@ -107,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         inputEndTime.setText(String.valueOf(mI.getEndTime()));
 
         //Setting switch States
+        ringerSwitch.setChecked(mI.getRingerSwitch());
+        flashSwitch.setChecked(mI.getFlashSwitch());
+
 
     }
 

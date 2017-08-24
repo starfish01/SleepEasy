@@ -48,5 +48,25 @@ import android.content.SharedPreferences;
 
     }
 
+    void setSwitch(String switchThatNeedsToFlip){
+
+        boolean position = prefs.getBoolean(switchThatNeedsToFlip,false);
+
+        if (position){
+            prefs.edit().putBoolean(switchThatNeedsToFlip,false).apply();
+        }else{
+            prefs.edit().putBoolean(switchThatNeedsToFlip,true).apply();
+        }
+
+    }
+
+    boolean getRingerSwitch(){
+        return prefs.getBoolean("RINGER",false);
+    }
+
+    boolean getFlashSwitch(){
+        return prefs.getBoolean("FLASH",false);
+    }
+
 
 }
