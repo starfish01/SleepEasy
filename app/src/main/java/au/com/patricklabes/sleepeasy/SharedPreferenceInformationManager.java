@@ -7,12 +7,12 @@ import android.content.SharedPreferences;
  * Created by patri on 19-Aug-17.
  */
 
- class SharedPrefrenceInformationManager {
+ class SharedPreferenceInformationManager {
 
     private SharedPreferences prefs;
     private Context context;
 
-     SharedPrefrenceInformationManager(Context context){
+     SharedPreferenceInformationManager(Context context){
         this.context = context;
          prefs = context.getSharedPreferences("au.com.shifttech", 0);
 

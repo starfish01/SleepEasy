@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText inputStartTime, inputEndTime;
 
 
-    SharedPrefrenceInformationManager mI;
+    SharedPreferenceInformationManager mI;
 
 
 
@@ -28,10 +28,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mI = new SharedPrefrenceInformationManager(this);
+        mI = new SharedPreferenceInformationManager(this);
 
         Log.d("Crash issue", "0");
 
+        //switch to spinner one day
         inputStartTime = (EditText)this.findViewById(R.id.input_startTime);
         inputEndTime = (EditText)this.findViewById(R.id.input_endTime);
 
@@ -40,11 +41,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ringerSwitch = (Switch)this.findViewById(R.id.switch_ringer);
         flashSwitch = (Switch)this.findViewById(R.id.switch_flash);
-
         ringerSwitch.setOnClickListener(this);
         flashSwitch.setOnClickListener(this);
 
-        //temp while i iron the rest out
+
+
+
+
+        //temp while i iron the rest out (probably switch to a spinner)
         inputStartTime.setFocusable(false);
         inputEndTime.setFocusable(false);
 
@@ -71,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  break;
              case R.id.btn_activate:
                  activeBtnChecker();
+
+
                  break;
 
          }

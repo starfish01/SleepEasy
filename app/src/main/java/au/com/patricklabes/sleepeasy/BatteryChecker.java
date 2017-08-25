@@ -9,8 +9,11 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.os.PowerManager;
-import android.util.Log;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by patrick on 4/08/2017.
@@ -18,7 +21,8 @@ import android.widget.Toast;
 
 public class BatteryChecker extends BroadcastReceiver {
 
-
+    SharedPreferenceInformationManager mI;
+    Context context;
 
     /*
     https://stackoverflow.com/questions/4459058/alarm-manager-example
@@ -31,30 +35,45 @@ public class BatteryChecker extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        context = this.context;
+
         PowerManager pm =(PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"");
         wl.acquire();
 
 
-        Log.d("the enter","0");
-
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.getApplicationContext().registerReceiver(null, ifilter);
-
-
-
 
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
         boolean fullyCharged = status == BatteryManager.BATTERY_STATUS_FULL;
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 
-
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
-        int stats = prefs.getInt("BATTERY_PERCENT",0);
+        //if connected we can skip all
+        if(isCharging){
+            wl.release();
+            return;
+        }
 
-        Log.d("StatusCaller",String.valueOf(stats));
+        //check time
+        if (checkIfItsTime()){
+
+        }else {
+            wl.release();
+            return;
+        }
+
+
+
+
+
+        //
+
+        int stats = prefs.getInt("BATTERY_PERCENT",0);
 
 
         Toast.makeText(context,String.valueOf(level), Toast.LENGTH_LONG).show();
@@ -91,6 +110,39 @@ public class BatteryChecker extends BroadcastReceiver {
         PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(sender);
+    }
+
+
+    private boolean checkIfItsTime(){
+        mI = new SharedPreferenceInformationManager(context);
+
+
+        Calendar cal = Calendar.getInstance();
+        int currentHour = cal.get(Calendar.HOUR_OF_DAY);
+        int startTime = mI.getStartTime();
+        int endTime = mI.getEndTime();
+
+        if (endTime != 0){
+            endTime -= 1;
+        }else{
+            endTime = 23;
+        }
+
+        //int ticker[];
+        List<Integer> ticker = new ArrayList<>();
+
+        ticker.add(startTime);
+
+        while (startTime != endTime){
+            if (startTime == 23){
+                startTime = 0;
+            }else {
+                startTime += 1;
+            }
+            ticker.add(startTime);
+        }
+
+        return ticker.contains(currentHour);
     }
 
 
