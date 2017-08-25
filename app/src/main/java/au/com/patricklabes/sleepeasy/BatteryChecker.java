@@ -61,6 +61,9 @@ public class BatteryChecker extends BroadcastReceiver {
 
         //check time
         if (checkIfItsTime()){
+            if (!mI.getNotificationStatus()){
+               // if notification returns false ( )
+            }
 
         }else {
             wl.release();

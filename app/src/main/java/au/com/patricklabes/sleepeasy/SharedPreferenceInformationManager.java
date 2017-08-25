@@ -3,9 +3,6 @@ package au.com.patricklabes.sleepeasy;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by patri on 19-Aug-17.
- */
 
  class SharedPreferenceInformationManager {
 
@@ -22,17 +19,13 @@ import android.content.SharedPreferences;
      int getStartTime(){
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
-        int startTime = prefs.getInt("STARTTIME",22);
-
-        return startTime;
+        return prefs.getInt("STARTTIME",22);
     }
 
      int getEndTime(){
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
-        int endTime = prefs.getInt("ENDTIME",2);
-
-        return endTime;
+        return prefs.getInt("ENDTIME",2);
     }
 
     boolean activationButton(){
@@ -67,6 +60,16 @@ import android.content.SharedPreferences;
     boolean getFlashSwitch(){
         return prefs.getBoolean("FLASH",false);
     }
+
+    void setNotificationStatus(boolean position){
+        position = prefs.getBoolean("NOTIFICATION",false);
+        prefs.edit().putBoolean("NOTIFICATION",position).apply();
+    }
+
+    boolean getNotificationStatus(){
+        return prefs.getBoolean("NOTIFICATION",false);
+    }
+
 
 
 }
