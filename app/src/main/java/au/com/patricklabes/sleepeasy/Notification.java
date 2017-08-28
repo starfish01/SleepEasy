@@ -6,7 +6,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+import android.view.View;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -14,15 +16,22 @@ import static android.content.Context.NOTIFICATION_SERVICE;
  * Created by patri on 31-Jul-17.
  */
 
-public class Notification extends Activity {
+public class Notification extends NotificationCompat.Builder {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
 
+    /**
+     * @param context
+     * @inheritDoc
+     */
+    public Notification(Context context) {
+        super(context);
+    }
+
+    public void setNotification(View view){
 
 
     }
+
 
 
 

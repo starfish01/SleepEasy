@@ -1,5 +1,9 @@
 package au.com.patricklabes.sleepeasy;
 
+import android.app.*;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  break;
              case R.id.btn_activate:
                  activeBtnChecker();
+
+
 
 
                  break;
