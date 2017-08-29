@@ -2,10 +2,9 @@ package au.com.patricklabes.sleepeasy;
 
 import android.app.*;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -80,8 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.btn_activate:
                  activeBtnChecker();
 
+                 NotificationHandler notification = new NotificationHandler();
+                 NotificationCompat.Builder builder = notification.notificationWarning(this);
 
+                 NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                 builder.build();
 
+                 manager.notify(1,builder.build());
 
                  break;
 
