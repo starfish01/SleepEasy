@@ -22,7 +22,6 @@ public class NotificationHandler {
         builder.setContentIntent(contentIntent);
 
 
-
         return builder;
     }
 
