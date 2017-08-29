@@ -1,6 +1,7 @@
 package au.com.patricklabes.sleepeasy;
 
 
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -13,13 +14,21 @@ public class NotificationHandler {
     public NotificationCompat.Builder notificationWarning(Context context){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
-                builder.setSmallIcon(R.mipmap.ic_launcher)
-                .setContentText("Hello world")
-                .setContentTitle("Yo Yo");
-
         Intent notificationIntent = new Intent(context, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context,0, notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(contentIntent);
+
+        NotificationCompat.Action action = new NotificationCompat.Action(
+                R.drawable.ic_alarm_off,
+                "Pause Alert",contentIntent);
+
+
+                builder.setSmallIcon(R.drawable.ic_battery_unknown)
+                .setContentTitle("Sleep Easy")
+                .setContentText("The Device has not been connected to a charger? Do you want to pause the alert?")
+                .addAction(action);
+
+
 
 
         return builder;
