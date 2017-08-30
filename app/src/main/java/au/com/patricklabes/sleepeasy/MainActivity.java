@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                  builder.build();
 
-                 manager.notify(1,builder.build());
+                 manager.notify(852,builder.build());
 
                  break;
 
