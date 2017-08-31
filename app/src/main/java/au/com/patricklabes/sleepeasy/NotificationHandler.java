@@ -46,6 +46,11 @@ public class NotificationHandler {
         return builder;
     }
 
+    public void cancelTheNotification(){
+
+
+    }
+
 
 
 

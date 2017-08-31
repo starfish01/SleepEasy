@@ -1,26 +1,30 @@
 package au.com.patricklabes.sleepeasy;
 
-import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.widget.Toast;
 
 
 public class NotificationHandlerOnClick extends Service {
 
+    public void onCreate(){
+        NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancel(852);
+
+        SharedPreferenceInformationManager sp = new SharedPreferenceInformationManager(this);
+        sp.setPause();
+
+    }
+
 
     public NotificationHandlerOnClick() {
 
-        NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.cancel(852);
 
     }
 
@@ -29,6 +33,9 @@ public class NotificationHandlerOnClick extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+
+
 
 
 }

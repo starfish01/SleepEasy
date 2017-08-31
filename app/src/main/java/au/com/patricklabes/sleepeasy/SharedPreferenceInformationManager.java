@@ -70,6 +70,18 @@ import android.content.SharedPreferences;
         return prefs.getBoolean("NOTIFICATION",false);
     }
 
+    void setPause(){
+        prefs.edit().putBoolean("PAUSE_ALERT",true).apply();
+    }
+
+    void resetPause(){
+        prefs.edit().putBoolean("PAUSE_ALERT",false).apply();
+    }
+
+    boolean positionPause(){
+        return prefs.getBoolean("PAUSE_ALERT",false);
+    }
+
 
 
 }

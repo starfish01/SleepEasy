@@ -79,19 +79,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.btn_activate:
                  activeBtnChecker();
 
-                 NotificationHandler notification = new NotificationHandler();
-                 NotificationCompat.Builder builder = notification.notificationWarning(this);
-
-                 NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-                 builder.build();
-
-                 manager.notify(852,builder.build());
-
+                 testExample();
                  break;
 
          }
 
     }
+
+
+
+    private void testExample(){
+
+        NotificationHandler notification = new NotificationHandler();
+
+
+        NotificationCompat.Builder builder = notification.notificationWarning(this);
+
+        NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+        SharedPreferenceInformationManager sp = new SharedPreferenceInformationManager(getApplicationContext());
+
+
+        Log.d("Pause key position is ",String.valueOf(sp.positionPause()));
+
+
+        manager.notify(852,builder.build());
+    }
+
 
     private void switchButtonChecker(String switchThatWasFlipped){
         mI.setSwitch(switchThatWasFlipped);
