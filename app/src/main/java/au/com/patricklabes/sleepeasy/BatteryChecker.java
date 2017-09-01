@@ -55,33 +55,7 @@ public class BatteryChecker extends BroadcastReceiver {
 
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
-        //this needs to all be an if else statement to check everything else cancel yeah boi
 
-
-        //if connected
-        if(isCharging){
-            wl.release();
-            return;
-        }
-        //if else its paused
-        else if(mI.positionPause()){
-            return;
-        }
-
-        //if else is it time
-        else if (checkIfItsTime()){
-            if (!mI.getNotificationStatus()){
-                // if notification returns false ( )
-                mI.setNotificationStatus(true);
-                fireNotification();
-                return;
-            }
-
-
-        //fire else statement
-
-
-        //if connected we can skip all
         if(isCharging){
             wl.release();
             return;
@@ -90,16 +64,18 @@ public class BatteryChecker extends BroadcastReceiver {
         //check time
         if (checkIfItsTime()) {
             if (!mI.getNotificationStatus()) {
-                // if notification returns false ( )
                 //fire notification
                 mI.setNotificationStatus(true);
                 fireNotification();
-                // return bitch
-
+                // return
+                wl.release();
+                return;
+            }else if(!mI.positionPause()) {
+                //fire alert
             }
         }
 
-        }else {
+        else {
             wl.release();
             return;
         }
