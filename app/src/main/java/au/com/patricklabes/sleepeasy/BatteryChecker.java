@@ -1,6 +1,7 @@
 package au.com.patricklabes.sleepeasy;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.os.PowerManager;
+import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -53,6 +55,32 @@ public class BatteryChecker extends BroadcastReceiver {
 
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
+        //this needs to all be an if else statement to check everything else cancel yeah boi
+
+
+        //if connected
+        if(isCharging){
+            wl.release();
+            return;
+        }
+        //if else its paused
+        else if(mI.positionPause()){
+            return;
+        }
+
+        //if else is it time
+        else if (checkIfItsTime()){
+            if (!mI.getNotificationStatus()){
+                // if notification returns false ( )
+                mI.setNotificationStatus(true);
+                fireNotification();
+                return;
+            }
+
+
+        //fire else statement
+
+
         //if connected we can skip all
         if(isCharging){
             wl.release();
@@ -60,10 +88,16 @@ public class BatteryChecker extends BroadcastReceiver {
         }
 
         //check time
-        if (checkIfItsTime()){
-            if (!mI.getNotificationStatus()){
-               // if notification returns false ( )
+        if (checkIfItsTime()) {
+            if (!mI.getNotificationStatus()) {
+                // if notification returns false ( )
+                //fire notification
+                mI.setNotificationStatus(true);
+                fireNotification();
+                // return bitch
+
             }
+        }
 
         }else {
             wl.release();
@@ -146,6 +180,14 @@ public class BatteryChecker extends BroadcastReceiver {
         }
 
         return ticker.contains(currentHour);
+    }
+
+    private void fireNotification(){
+        NotificationHandler notification = new NotificationHandler();
+        NotificationCompat.Builder builder = notification.notificationWarning(context);
+        NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        SharedPreferenceInformationManager sp = new SharedPreferenceInformationManager(context);
+        manager.notify(852,builder.build());
     }
 
 

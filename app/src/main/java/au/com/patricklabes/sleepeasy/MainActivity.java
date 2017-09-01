@@ -91,18 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void testExample(){
 
         NotificationHandler notification = new NotificationHandler();
-
-
         NotificationCompat.Builder builder = notification.notificationWarning(this);
-
         NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
         SharedPreferenceInformationManager sp = new SharedPreferenceInformationManager(getApplicationContext());
-
-
-        Log.d("Pause key position is ",String.valueOf(sp.positionPause()));
-
-
         manager.notify(852,builder.build());
     }
 
