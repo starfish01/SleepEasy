@@ -71,7 +71,12 @@ public class BatteryChecker extends BroadcastReceiver {
                 wl.release();
                 return;
             }else if(!mI.positionPause()) {
-                //fire alert
+                //fire alert not connected
+
+                Intent intent1 = new Intent(context,PhoneIsNotChargingAlert.class);
+                context.startActivity(intent1);
+
+
             }
         }
 
