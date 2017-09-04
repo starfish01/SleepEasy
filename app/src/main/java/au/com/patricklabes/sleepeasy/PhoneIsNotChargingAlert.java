@@ -23,5 +23,7 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity{
         ringer = mI.getRingerSwitch();
         flasher = mI.getFlashSwitch();
 
+        //launch
+
     }
 }
