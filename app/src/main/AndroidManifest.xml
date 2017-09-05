@@ -21,6 +21,12 @@
         </activity>
         <service android:name=".NotificationHandlerOnClick">
         </service>
+
+        <activity android:name=".PhoneIsNotChargingAlert"
+            android:showOnLockScreen="true"
+            android:screenOrientation="sensorPortrait"/>
+
+
         <receiver android:name=".OnRebootChecker">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

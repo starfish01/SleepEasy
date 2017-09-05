@@ -2,6 +2,7 @@ package au.com.patricklabes.sleepeasy;
 
 import android.app.*;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.NotificationCompat;
@@ -31,9 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         mI = new SharedPreferenceInformationManager(this);
 
-        Log.d("Crash issue", "0");
 
         //switch to spinner one day
         inputStartTime = (EditText)this.findViewById(R.id.input_startTime);
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                  break;
              case R.id.btn_activate:
-                 activeBtnChecker();
+                 //activeBtnChecker();
 
                  testExample();
                  break;
@@ -89,12 +91,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void testExample(){
+        Log.d("Did we get here","1");
 
+        // Testing phone is not charging activity
+        Intent intent = new Intent(getApplicationContext(),PhoneIsNotChargingAlert.class);
+        startActivity(intent);
+        //
+        Log.d("Did we end up here","1");
+
+
+        /*
         NotificationHandler notification = new NotificationHandler();
         NotificationCompat.Builder builder = notification.notificationWarning(this);
         NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         SharedPreferenceInformationManager sp = new SharedPreferenceInformationManager(getApplicationContext());
         manager.notify(852,builder.build());
+         */
+
     }
 
 
