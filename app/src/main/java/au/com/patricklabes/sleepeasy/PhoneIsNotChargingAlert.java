@@ -1,13 +1,17 @@
 package au.com.patricklabes.sleepeasy;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 /**
  * Created by patri on 03-Sep-17.
@@ -17,6 +21,8 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity{
 
     SharedPreferenceInformationManager mI;
     Boolean flasher, ringer;
+    Handler handler;
+    LinearLayout backgroundScreen;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,15 +43,26 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity{
 
         //launch
 
+        //ScreenColorChanger sc = new ScreenColorChanger();
+
+        //ScreenColorChanger.colorLight();
+
         FlashScreen();
 
     }
 
 
     public void FlashScreen(){
+        backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
+
+        backgroundScreen.setBackgroundColor(Color.BLACK);
+
+
+        //Stuck Here ...
+        //ObjectAnimator colorFade = ObjectAnimator.ofObject(backgroundScreen,new ArgbEvaluator(),,Color.WHITE);
+
 
         Log.d("Color choice","Black");
-        getWindow().getDecorView().setBackgroundColor(Color.BLACK);
 
     }
 
