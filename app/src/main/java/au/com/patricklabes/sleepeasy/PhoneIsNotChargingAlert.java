@@ -1,8 +1,11 @@
 package au.com.patricklabes.sleepeasy;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
@@ -12,6 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+
+import static android.animation.ObjectAnimator.ofObject;
 
 /**
  * Created by patri on 03-Sep-17.
@@ -55,16 +60,49 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity{
     public void FlashScreen(){
         backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
 
-        backgroundScreen.setBackgroundColor(Color.BLACK);
-
-
-        //Stuck Here ...
-        //ObjectAnimator colorFade = ObjectAnimator.ofObject(backgroundScreen,new ArgbEvaluator(),,Color.WHITE);
-
-
-        Log.d("Color choice","Black");
+        colorOne();
 
     }
+
+    private void colorOne(){
+        backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
+
+
+        //int colorId = ((ColorDrawable) backgroundScreen.getBackground()).getColor();
+        ObjectAnimator oA = ObjectAnimator.ofObject(backgroundScreen,"backgroundColor",new ArgbEvaluator(),Color.YELLOW,Color.BLACK);
+        oA.setDuration(10000);
+        oA.start();
+
+
+        oA.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                colorTwo();
+            }
+        });
+
+    }
+
+    private void colorTwo(){
+        backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
+
+
+        int colorId = ((ColorDrawable) backgroundScreen.getBackground()).getColor();
+        ObjectAnimator oA = ObjectAnimator.ofObject(backgroundScreen,"backgroundColor",new ArgbEvaluator(),colorId,Color.YELLOW);
+        oA.setDuration(10000);
+        oA.start();
+
+
+        oA.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                colorOne();
+            }
+        });
+
+    }
+
+
 
 
 
