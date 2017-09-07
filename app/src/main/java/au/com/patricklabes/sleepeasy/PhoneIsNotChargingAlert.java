@@ -8,16 +8,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
-import static android.animation.ObjectAnimator.ofObject;
 
 /**
  * Created by patri on 03-Sep-17.
@@ -31,6 +27,7 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
     LinearLayout backgroundScreen;
     Button deactivationButton;
     ObjectAnimator oA;
+    boolean end;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,49 +51,39 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
 
         backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
 
-        //launch
+        if(flasher){
+            FlashScreen();
+        }
 
-        //ScreenColorChanger sc = new ScreenColorChanger();
-
-        //ScreenColorChanger.colorLight();
-
-        FlashScreen();
 
     }
 
 
     public void FlashScreen(){
-
+        backgroundScreen.setBackgroundColor(Color.YELLOW);
         colorOne();
-
     }
+
+
 
     private void colorOne(){
+        if (end){
+            backgroundScreen.setBackgroundColor(Color.WHITE);
+            return;
+        }
 
+        int colorFrom = ((ColorDrawable) backgroundScreen.getBackground()).getColor();
+        int colorTo = Color.BLACK;
 
-        //int colorId = ((ColorDrawable) backgroundScreen.getBackground()).getColor();
-        oA = ObjectAnimator.ofObject(backgroundScreen,"backgroundColor",new ArgbEvaluator(),Color.YELLOW,Color.BLACK);
-        oA.setDuration(10000);
+        if (colorFrom == Color.BLACK){
+             colorTo = Color.BLACK;
+             colorFrom = Color.YELLOW;
+        }
+
+        oA = ObjectAnimator.ofObject(backgroundScreen,"backgroundColor",new ArgbEvaluator(),colorFrom,colorTo);
+        oA.setDuration(1000);
         oA.start();
 
-
-
-        oA.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                colorTwo();
-            }
-        });
-
-    }
-
-    private void colorTwo(){
-
-
-        int colorId = ((ColorDrawable) backgroundScreen.getBackground()).getColor();
-        oA = ObjectAnimator.ofObject(backgroundScreen,"backgroundColor",new ArgbEvaluator(),colorId,Color.YELLOW);
-        oA.setDuration(10000);
-        oA.start();
 
 
         oA.addListener(new AnimatorListenerAdapter() {
@@ -111,9 +98,7 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View v) {
-        backgroundScreen.setBackgroundColor(Color.BLUE);
-        oA.cancel();
-
-
+        backgroundScreen.setBackgroundColor(Color.WHITE);
+        end = true;
     }
 }
