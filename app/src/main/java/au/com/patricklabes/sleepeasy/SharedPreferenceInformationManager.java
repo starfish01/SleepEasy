@@ -2,9 +2,10 @@ package au.com.patricklabes.sleepeasy;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 
- class SharedPreferenceInformationManager {
+class SharedPreferenceInformationManager {
 
     private SharedPreferences prefs;
     private Context context;
@@ -43,6 +44,7 @@ import android.content.SharedPreferences;
 
     void setSwitch(String switchThatNeedsToFlip){
 
+        Log.d("Switch that ","flipped");
         boolean position = prefs.getBoolean(switchThatNeedsToFlip,false);
 
         if (position){

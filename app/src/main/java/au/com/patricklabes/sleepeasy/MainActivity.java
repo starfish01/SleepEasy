@@ -1,11 +1,8 @@
 package au.com.patricklabes.sleepeasy;
 
-import android.app.*;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -93,11 +90,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void testExample(){
         Log.d("Did we get here","1");
 
-        // Testing phone is not charging activity
-        Intent intent = new Intent(getApplicationContext(),PhoneIsNotChargingAlert.class);
-        startActivity(intent);
-        //
-        Log.d("Did we end up here","1");
+
+
+
+        //Switching to a service to handle interactions
+        Intent intent1 = new Intent(getApplicationContext(),PhoneIsNotChargingAlertService.class);
+        startService(intent1);
 
 
         /*
