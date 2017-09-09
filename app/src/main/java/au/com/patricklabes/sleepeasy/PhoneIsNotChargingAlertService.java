@@ -5,15 +5,16 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 
 /**
  * Created by patrick on 8/09/2017.
  */
 
-public class PhoneIsNotChargingAlertService extends Service {
+public class PhoneIsNotChargingAlertService extends Service implements View.OnClickListener {
 
     SharedPreferenceInformationManager mI;
-    Boolean flasher, ringer;
+    Boolean flasher, ringer, deactivated;
 
     @Nullable
     @Override
@@ -44,6 +45,14 @@ public class PhoneIsNotChargingAlertService extends Service {
         super.onCreate();
 
         mI = new SharedPreferenceInformationManager(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        deactivated = true;
+        Log.d("Did this work","yes it did");
+
 
     }
 }

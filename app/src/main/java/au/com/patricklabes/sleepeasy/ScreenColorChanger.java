@@ -86,6 +86,9 @@ public class ScreenColorChanger extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         backgroundScreen.setBackgroundColor(Color.WHITE);
+        // sending back the data that were done here this might be helpful
+        //https://stackoverflow.com/questions/920306/sending-data-back-to-the-main-activity-in-android
+
         end = true;
     }
 }
