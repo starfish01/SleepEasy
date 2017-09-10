@@ -6,6 +6,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +24,7 @@ public class ScreenColorChanger extends AppCompatActivity implements View.OnClic
     LinearLayout backgroundScreen;
     boolean end;
     ObjectAnimator oA;
+    MediaPlayer mp;
 
 
     @Override
@@ -39,6 +41,12 @@ public class ScreenColorChanger extends AppCompatActivity implements View.OnClic
         deactivationButton = (Button) this.findViewById(R.id.alertDeavtivateButton);
         deactivationButton.setOnClickListener(this);
         backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
+
+        mp = MediaPlayer.create(this,R.raw.siren);
+        mp.setLooping(true);
+        mp.start();
+
+
 
         FlashScreen();
 
@@ -83,12 +91,15 @@ public class ScreenColorChanger extends AppCompatActivity implements View.OnClic
     }
 
 
+
+
+
     @Override
     public void onClick(View v) {
         backgroundScreen.setBackgroundColor(Color.WHITE);
         // sending back the data that were done here this might be helpful
-        //https://stackoverflow.com/questions/920306/sending-data-back-to-the-main-activity-in-android
-
+        mp.stop();
+        super.finish();
         end = true;
     }
 }

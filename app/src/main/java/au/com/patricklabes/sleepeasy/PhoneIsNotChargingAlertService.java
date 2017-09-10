@@ -11,7 +11,7 @@ import android.view.View;
  * Created by patrick on 8/09/2017.
  */
 
-public class PhoneIsNotChargingAlertService extends Service implements View.OnClickListener {
+public class PhoneIsNotChargingAlertService extends Service {
 
     SharedPreferenceInformationManager mI;
     Boolean flasher, ringer, deactivated;
@@ -48,11 +48,7 @@ public class PhoneIsNotChargingAlertService extends Service implements View.OnCl
 
     }
 
-    @Override
-    public void onClick(View v) {
-        deactivated = true;
-        Log.d("Did this work","yes it did");
 
 
-    }
+
 }
