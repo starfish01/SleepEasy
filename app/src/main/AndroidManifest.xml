@@ -30,7 +30,7 @@
         </receiver>
 
         <service android:name=".PhoneIsNotChargingAlertService"/>
-        <activity android:name=".ScreenColorChanger"
+        <activity android:name=".PhoneIsNotChargingAlert"
             android:showOnLockScreen="true"
             android:screenOrientation="sensorPortrait"/>
 

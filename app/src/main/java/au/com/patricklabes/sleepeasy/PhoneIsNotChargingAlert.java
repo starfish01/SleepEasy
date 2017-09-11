@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -18,12 +19,13 @@ import android.widget.LinearLayout;
  * Created by patrick on 8/09/2017.
  */
 
-public class ScreenColorChanger extends AppCompatActivity implements View.OnClickListener{
+public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.OnClickListener{
 
     Button deactivationButton;
     LinearLayout backgroundScreen;
-    boolean end;
+    boolean flasher,ringer, end;
     ObjectAnimator oA;
+    SharedPreferenceInformationManager mI;
     MediaPlayer mp;
 
 
@@ -42,18 +44,32 @@ public class ScreenColorChanger extends AppCompatActivity implements View.OnClic
         deactivationButton.setOnClickListener(this);
         backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
 
+        //flasher = mI.getFlashSwitch();
+        //ringer = mI.getRingerSwitch();
+
+       // Log.d("Did we get here",String.valueOf(mI.getFlashSwitch()));
+/*
+        if(mI.getFlashSwitch()){
+            flashScreen();
+        }
+
+        if (mI.getRingerSwitch()){
+           ringerAlert();
+        }
+
+        //flashScreen();
+
+
+*/
+    }
+
+    private void ringerAlert() {
         mp = MediaPlayer.create(this,R.raw.siren);
         mp.setLooping(true);
         mp.start();
-
-
-
-        FlashScreen();
-
-
     }
 
-    public void  FlashScreen(){
+    public void  flashScreen(){
         backgroundScreen.setBackgroundColor(Color.YELLOW);
         backgroundScreen.invalidate();
         colorOne();
@@ -90,16 +106,23 @@ public class ScreenColorChanger extends AppCompatActivity implements View.OnClic
 
     }
 
+    @Override
+    public void onBackPressed() {
+        onExit();
 
-
-
+    }
 
     @Override
     public void onClick(View v) {
+        onExit();
+        }
+
+    public void onExit(){
         backgroundScreen.setBackgroundColor(Color.WHITE);
-        // sending back the data that were done here this might be helpful
         mp.stop();
         super.finish();
-        end = true;
+
     }
+
+
 }

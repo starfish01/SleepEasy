@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //Switching to a service to handle interactions
-        Intent intent1 = new Intent(getApplicationContext(),PhoneIsNotChargingAlertService.class);
-        startService(intent1);
+        Intent intent1 = new Intent(getApplicationContext(),PhoneIsNotChargingAlert.class);
+        startActivity(intent1);
 
 
         /*

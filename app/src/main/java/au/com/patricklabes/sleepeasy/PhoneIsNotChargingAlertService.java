@@ -4,8 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.View;
 
 /**
  * Created by patrick on 8/09/2017.
@@ -14,7 +12,7 @@ import android.view.View;
 public class PhoneIsNotChargingAlertService extends Service {
 
     SharedPreferenceInformationManager mI;
-    Boolean flasher, ringer, deactivated;
+    Boolean ringer, deactivated;
 
     @Nullable
     @Override
@@ -26,15 +24,12 @@ public class PhoneIsNotChargingAlertService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         ringer = mI.getRingerSwitch();
-        flasher = mI.getFlashSwitch();
 
-        Log.d("what is the position",String.valueOf(flasher));
-
-        if(flasher){
-            Intent dialogIntent = new Intent(this, ScreenColorChanger.class);
+            Intent dialogIntent = new Intent(this, PhoneIsNotChargingAlert.class);
             dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(dialogIntent);
-        }
+
 
 
         return START_NOT_STICKY;
