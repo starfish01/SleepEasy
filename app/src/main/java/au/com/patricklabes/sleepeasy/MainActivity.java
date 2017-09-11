@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ringerSwitch.setOnClickListener(this);
         flashSwitch.setOnClickListener(this);
 
-
+        canWeActivate();
 
 
 
@@ -70,9 +70,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          switch (v.getId()){
              case R.id.switch_flash:
                  switchButtonChecker("FLASH");
+                 canWeActivate();
+
                  break;
              case R.id.switch_ringer:
                  switchButtonChecker("RINGER");
+                 canWeActivate();
 
                  break;
              case R.id.btn_activate:
@@ -82,6 +85,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  break;
 
          }
+
+    }
+
+    private void canWeActivate(){
+        if (!mI.getRingerSwitch() && !mI.getFlashSwitch()){
+            activateBtn.setEnabled(false);
+        }else{
+            activateBtn.setEnabled(true);
+        }
 
     }
 

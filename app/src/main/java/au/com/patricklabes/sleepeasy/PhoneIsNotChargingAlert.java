@@ -44,11 +44,14 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
         deactivationButton.setOnClickListener(this);
         backgroundScreen = (LinearLayout)findViewById(R.id.alertScreenLayout);
 
-        //flasher = mI.getFlashSwitch();
-        //ringer = mI.getRingerSwitch();
+        mI = new SharedPreferenceInformationManager(this);
+
+
+        flasher = mI.getFlashSwitch();
+        ringer = mI.getRingerSwitch();
 
        // Log.d("Did we get here",String.valueOf(mI.getFlashSwitch()));
-/*
+
         if(mI.getFlashSwitch()){
             flashScreen();
         }
@@ -60,7 +63,7 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
         //flashScreen();
 
 
-*/
+
     }
 
     private void ringerAlert() {
@@ -119,7 +122,9 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
 
     public void onExit(){
         backgroundScreen.setBackgroundColor(Color.WHITE);
-        mp.stop();
+        if(mI.getRingerSwitch()){
+            mp.stop();
+        }
         super.finish();
 
     }
