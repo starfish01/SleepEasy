@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         inputStartTime = (EditText)this.findViewById(R.id.input_startTime);
         inputEndTime = (EditText)this.findViewById(R.id.input_endTime);
 
+        //
+
         activateBtn = (Button)this.findViewById(R.id.btn_activate);
         activateBtn.setOnClickListener(this);
 

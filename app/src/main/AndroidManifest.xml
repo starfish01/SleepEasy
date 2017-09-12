@@ -29,7 +29,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".PhoneIsNotChargingAlertService"/>
         <activity android:name=".PhoneIsNotChargingAlert"
             android:showOnLockScreen="true"
             android:screenOrientation="sensorPortrait"/>

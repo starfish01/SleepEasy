@@ -26,12 +26,6 @@ public class BatteryChecker extends BroadcastReceiver {
     SharedPreferenceInformationManager mI;
     Context context;
 
-    /*
-    https://stackoverflow.com/questions/4459058/alarm-manager-example
-
-    need to look into; AlarmManager,0000 PowerManager
-
-     */
 
 
 
@@ -76,10 +70,6 @@ public class BatteryChecker extends BroadcastReceiver {
                 Intent intent1 = new Intent(context,PhoneIsNotChargingAlert.class);
                 context.startActivity(intent1);
 
-                /*
-                Intent intent1 = new Intent(context,PhoneIsNotChargingAlertService.class);
-                context.startService(intent1);
-                */
 
             }
         }
