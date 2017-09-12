@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
         //temp while i iron the rest out (probably switch to a spinner)
         inputStartTime.setFocusable(false);
         inputEndTime.setFocusable(false);
