@@ -122,6 +122,7 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
 
     public void onExit(){
         backgroundScreen.setBackgroundColor(Color.WHITE);
+        mI.setPause();
         if(mI.getRingerSwitch()){
             mp.stop();
         }

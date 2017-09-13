@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class BatteryChecker extends BroadcastReceiver {
 
 
         if(isCharging){
+            Log.d("BatteryChecker","We are charging");
             wl.release();
             return;
         }
@@ -58,6 +60,7 @@ public class BatteryChecker extends BroadcastReceiver {
         //check time
         if (checkIfItsTime()) {
             if (!mI.getNotificationStatus()) {
+                Log.d("BatteryChecker","We havent sent notification yet");
                 //fire notification
                 mI.setNotificationStatus(true);
                 fireNotification();
@@ -67,6 +70,7 @@ public class BatteryChecker extends BroadcastReceiver {
             }else if(!mI.positionPause()) {
                 //fire alert not connected
 
+                Log.d("BatteryChecker","Notification fired with no response");
                 Intent intent1 = new Intent(context,PhoneIsNotChargingAlert.class);
                 context.startActivity(intent1);
 
@@ -75,6 +79,8 @@ public class BatteryChecker extends BroadcastReceiver {
         }
 
         else {
+            mI.setNotificationStatus(false);
+            mI.resetPause();
             wl.release();
             return;
         }
@@ -107,7 +113,13 @@ public class BatteryChecker extends BroadcastReceiver {
         PendingIntent pi = PendingIntent.getBroadcast(context,0,i,0);
 
         // testing the strain on the battery over the day
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
+
+        //need to change this for testing***********************************************************************************************
+
+        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 10000, pi);
+
+
+        //am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
 
 
 
