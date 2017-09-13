@@ -75,6 +75,7 @@ public class BatteryChecker extends BroadcastReceiver {
         }
 
         else {
+            mI.setPauseFalse();
             wl.release();
             return;
         }

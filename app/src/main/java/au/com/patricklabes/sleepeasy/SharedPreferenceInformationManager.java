@@ -72,8 +72,12 @@ class SharedPreferenceInformationManager {
         return prefs.getBoolean("NOTIFICATION",false);
     }
 
-    void setPause(){
+    void setPauseTrue(){
         prefs.edit().putBoolean("PAUSE_ALERT",true).apply();
+    }
+
+    void setPauseFalse(){
+        prefs.edit().putBoolean("PAUSE_ALERT",false).apply();
     }
 
     void resetPause(){

@@ -4,11 +4,8 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 
 public class NotificationHandlerOnClick extends Service {
@@ -18,7 +15,7 @@ public class NotificationHandlerOnClick extends Service {
         manager.cancel(852);
 
         SharedPreferenceInformationManager sp = new SharedPreferenceInformationManager(this);
-        sp.setPause();
+        sp.setPauseTrue();
 
     }
 
