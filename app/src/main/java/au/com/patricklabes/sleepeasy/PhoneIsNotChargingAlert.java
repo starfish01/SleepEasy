@@ -9,7 +9,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -122,7 +121,6 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
 
     public void onExit(){
         backgroundScreen.setBackgroundColor(Color.WHITE);
-        mI.setPause();
         if(mI.getRingerSwitch()){
             mp.stop();
         }
