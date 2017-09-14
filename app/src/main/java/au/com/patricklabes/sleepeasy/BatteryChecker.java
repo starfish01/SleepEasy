@@ -25,7 +25,7 @@ import java.util.List;
 public class BatteryChecker extends BroadcastReceiver {
 
     SharedPreferenceInformationManager mI;
-    Context context;
+    //Context context;
 
 
 
@@ -35,16 +35,21 @@ public class BatteryChecker extends BroadcastReceiver {
 
         Log.d("Do we get here","2");
 
-        context = this.context;
+        //context = this.context;
 
-        PowerManager pm =(PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        Log.d("Do we get here","3");
+        PowerManager pm =(PowerManager) context.getSystemService(context.POWER_SERVICE);
+        Log.d("Do we get here","3.1");
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"");
+        Log.d("Do we get here","3.2");
         wl.acquire();
 
-
+        Log.d("Do we get here","4");
 
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.getApplicationContext().registerReceiver(null, ifilter);
+
+        Log.d("Do we get here","5");
 
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
@@ -53,42 +58,52 @@ public class BatteryChecker extends BroadcastReceiver {
 
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
-
+        Log.d("Do we get here","6");
 
         if(isCharging){
             Log.d("BatteryChecker","We are charging");
+            Log.d("Do we get here","6.1");
             wl.release();
             return;
         }
 
+        Log.d("Do we get here","7");
+
+        // something is wrong with the notification status
+        //TODO look into notification status and how it works
+
+
         //check time
-        if (checkIfItsTime()) {
+        if (checkIfItsTime(context)) {
             if (!mI.getNotificationStatus()) {
-                Log.d("BatteryChecker","We havent sent notification yet");
+                Log.d("Do we get here","7.1");
                 //fire notification
-                mI.setNotificationStatus(true);
-                fireNotification();
+                mI.setNotificationStatus(false);
+                fireNotification(context);
                 // return
                 wl.release();
                 return;
             }else if(!mI.positionPause()) {
                 //fire alert not connected
 
-                Log.d("BatteryChecker","Notification fired with no response");
+                Log.d("Do we get here","7.2");
                 Intent intent1 = new Intent(context,PhoneIsNotChargingAlert.class);
                 context.startActivity(intent1);
 
 
             }
-        }
-
-        else {
+        } else {
+            Log.d("Do we get here","8.1");
             mI.setPauseFalse();
-            mI.setNotificationStatus(false);
+            Log.d("Do we get here","8.2");
+            mI.setNotificationStatus(true);
+            Log.d("Do we get here","8.3");
             wl.release();
+            Log.d("Do we get here","8.4");
             return;
         }
 
+        Log.d("Do we get here","9");
 
 
 
@@ -122,7 +137,7 @@ public class BatteryChecker extends BroadcastReceiver {
         //need to change this for testing***********************************************************************************************
 
         //am.setExact(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),pi);
-        am.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),10000,pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),60000,pi);
         //something here must be wrong
         //am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pi);
         //am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
@@ -143,15 +158,17 @@ public class BatteryChecker extends BroadcastReceiver {
     }
 
 
-    private boolean checkIfItsTime(){
+    private boolean checkIfItsTime(Context context){
+        Log.d("Do we get here","7.time1");
         mI = new SharedPreferenceInformationManager(context);
-
+        Log.d("Do we get here","7.time2");
 
         Calendar cal = Calendar.getInstance();
         int currentHour = cal.get(Calendar.HOUR_OF_DAY);
         int startTime = mI.getStartTime();
         int endTime = mI.getEndTime();
 
+        Log.d("Do we get here","7.time3");
         if (endTime != 0){
             endTime -= 1;
         }else{
@@ -175,7 +192,7 @@ public class BatteryChecker extends BroadcastReceiver {
         return ticker.contains(currentHour);
     }
 
-    private void fireNotification(){
+    private void fireNotification(Context context){
         NotificationHandler notification = new NotificationHandler();
         NotificationCompat.Builder builder = notification.notificationWarning(context);
         NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
