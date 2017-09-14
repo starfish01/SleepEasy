@@ -54,6 +54,7 @@ public class BatteryChecker extends BroadcastReceiver {
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
 
+
         if(isCharging){
             Log.d("BatteryChecker","We are charging");
             wl.release();
