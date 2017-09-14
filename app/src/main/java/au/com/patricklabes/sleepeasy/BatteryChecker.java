@@ -33,6 +33,8 @@ public class BatteryChecker extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        Log.d("Do we get here","2");
+
         context = this.context;
 
         PowerManager pm =(PowerManager) context.getSystemService(Context.POWER_SERVICE);
@@ -79,6 +81,8 @@ public class BatteryChecker extends BroadcastReceiver {
         }
 
         else {
+            mI.setPauseFalse();
+            mI.setNotificationStatus(false);
             wl.release();
             return;
         }
@@ -105,6 +109,7 @@ public class BatteryChecker extends BroadcastReceiver {
         //specified time
         // https://developer.android.com/reference/android/app/AlarmManager.html#setExact(int, long, android.app.PendingIntent)
 
+        Log.d("Do we get here","1");
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, BatteryChecker.class);
@@ -114,9 +119,10 @@ public class BatteryChecker extends BroadcastReceiver {
 
         //need to change this for testing***********************************************************************************************
 
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 10000, pi);
-
-
+        //am.setExact(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),10000,pi);
+        //something here must be wrong
+        //am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pi);
         //am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
 
 
