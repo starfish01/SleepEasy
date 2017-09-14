@@ -42,6 +42,7 @@ public class BatteryChecker extends BroadcastReceiver {
         wl.acquire();
 
 
+
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.getApplicationContext().registerReceiver(null, ifilter);
 
