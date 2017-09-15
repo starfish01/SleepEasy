@@ -87,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  break;
              case R.id.btn_activate:
                  activeBtnChecker();
-
-                 //testExample();
                  break;
 
          }
@@ -101,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             activateBtn.setEnabled(true);
         }
-
     }
 
 
@@ -141,6 +138,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Activation Button
         if (mI.activationButton()){
             activateBtn.setText("Deactive");
+            //need to start activation not sure this is any use to users because they wont be install over the top like my debugs are...
+            BatteryChecker bc = new BatteryChecker();
+            bc.setAlarm(getApplicationContext());
         }
         //Seting Times
         inputStartTime.setText(String.valueOf(mI.getStartTime()));
@@ -149,13 +149,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Setting switch States
         ringerSwitch.setChecked(mI.getRingerSwitch());
         flashSwitch.setChecked(mI.getFlashSwitch());
-
-
     }
-
-
-
-
-
-
 }

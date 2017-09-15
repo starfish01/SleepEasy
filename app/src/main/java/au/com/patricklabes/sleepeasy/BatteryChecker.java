@@ -100,15 +100,10 @@ public class BatteryChecker extends BroadcastReceiver {
         Intent i = new Intent(context, BatteryChecker.class);
         PendingIntent pi = PendingIntent.getBroadcast(context,0,i,0);
 
-        // testing the strain on the battery over the day
+        //every minute for testing
+        //am.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),60000,pi);
 
-        //need to change this for testing***********************************************************************************************
-
-        //am.setExact(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),pi);
-        am.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),60000,pi);
-        //something here must be wrong
-        //am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pi);
-        //am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
+        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
 
 
 
