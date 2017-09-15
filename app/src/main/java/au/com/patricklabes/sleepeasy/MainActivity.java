@@ -106,26 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    private void testExample(){
-        Log.d("Did we get here","1");
 
-
-
-
-        //Switching to a service to handle interactions
-        Intent intent1 = new Intent(getApplicationContext(),PhoneIsNotChargingAlert.class);
-        startActivity(intent1);
-
-
-        /*
-        NotificationHandler notification = new NotificationHandler();
-        NotificationCompat.Builder builder = notification.notificationWarning(this);
-        NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        SharedPreferenceInformationManager sp = new SharedPreferenceInformationManager(getApplicationContext());
-        manager.notify(852,builder.build());
-         */
-
-    }
 
 
     private void switchButtonChecker(String switchThatWasFlipped){
@@ -148,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Deactivated", Toast.LENGTH_LONG).show();
             mI.changeActivationButtonStatus(false);
         }
+
+        mI.setNotificationStatus(false);
+        mI.setPauseFalse();
+
+
     }
 
     public void buttonStates(){

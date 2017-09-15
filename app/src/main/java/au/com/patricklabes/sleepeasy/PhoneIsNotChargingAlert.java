@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -32,6 +33,11 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        NotificationHandler nH = new NotificationHandler();
+        nH.cancelTheNotification(getApplicationContext());
+
+        Log.d("Do we get here","10");
+
         setContentView(R.layout.alert_screen_layout);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
@@ -49,7 +55,6 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
         flasher = mI.getFlashSwitch();
         ringer = mI.getRingerSwitch();
 
-       // Log.d("Did we get here",String.valueOf(mI.getFlashSwitch()));
 
         if(mI.getFlashSwitch()){
             flashScreen();
@@ -59,7 +64,6 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
            ringerAlert();
         }
 
-        //flashScreen();
 
 
 
@@ -124,6 +128,7 @@ public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.O
         if(mI.getRingerSwitch()){
             mp.stop();
         }
+        mI.setPauseTrue();
         super.finish();
 
     }

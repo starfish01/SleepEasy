@@ -64,7 +64,7 @@ class SharedPreferenceInformationManager {
     }
 
     void setNotificationStatus(boolean position){
-        position = prefs.getBoolean("NOTIFICATION",false);
+        prefs.getBoolean("NOTIFICATION",false);
         prefs.edit().putBoolean("NOTIFICATION",position).apply();
     }
 

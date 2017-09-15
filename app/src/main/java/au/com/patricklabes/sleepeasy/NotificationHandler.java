@@ -3,6 +3,7 @@ package au.com.patricklabes.sleepeasy;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -46,9 +47,9 @@ public class NotificationHandler {
         return builder;
     }
 
-    public void cancelTheNotification(){
-
-
+    public void cancelTheNotification(Context context){
+        NotificationManager mN = (NotificationManager)context.getSystemService(context.NOTIFICATION_SERVICE);
+        mN.cancel(852);
     }
 
 
