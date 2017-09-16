@@ -4,175 +4,168 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_2"
     tools:context="au.com.patricklabes.sleepeasy.MainActivity">
 
-   <LinearLayout
-       android:layout_width="368dp"
-       android:layout_height="495dp"
-       android:orientation="vertical"
-       tools:layout_editor_absoluteY="8dp"
-       tools:layout_editor_absoluteX="8dp">
-
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
 
-        <TextView
-            android:id="@+id/title_Times_to_check_between"
-            android:layout_width="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Times to check between"
-            tools:layout_editor_absoluteX="262dp"
-            tools:layout_editor_absoluteY="228dp" />
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <TextView
+                android:id="@+id/title_Times_to_check_between"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Times to check between"
+                tools:layout_editor_absoluteX="262dp"
+                tools:layout_editor_absoluteY="228dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <TextView
+                android:id="@+id/title_start_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start Time"
+                tools:layout_editor_absoluteX="262dp"
+                tools:layout_editor_absoluteY="228dp" />
+
+
+            <EditText
+                android:id="@+id/input_startTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="time" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <TextView
+                android:id="@+id/title_end_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="End Time"
+                tools:layout_editor_absoluteX="262dp"
+                tools:layout_editor_absoluteY="228dp" />
+
+            <EditText
+                android:id="@+id/input_endTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="time" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <TextView
+                android:id="@+id/title_alert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="End Time"
+                tools:layout_editor_absoluteX="262dp"
+                tools:layout_editor_absoluteY="228dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <Switch
+                android:id="@+id/switch_ringer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ringer" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <Switch
+                android:id="@+id/switch_flash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Flash" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <Button
+                android:id="@+id/btn_activate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Activate" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/time_array"
+                android:prompt="@string/app_name" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           tools:layout_editor_absoluteY="8dp"
-           tools:layout_editor_absoluteX="8dp">
-
-           <TextView
-               android:id="@+id/title_start_time"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="Start Time"
-               tools:layout_editor_absoluteX="262dp"
-               tools:layout_editor_absoluteY="228dp" />
-
-
-
-           <EditText
-               android:id="@+id/input_startTime"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:ems="10"
-               android:inputType="time" />
-
-       </LinearLayout>
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           tools:layout_editor_absoluteY="8dp"
-           tools:layout_editor_absoluteX="8dp">
-
-           <TextView
-               android:id="@+id/title_end_time"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="End Time"
-               tools:layout_editor_absoluteX="262dp"
-               tools:layout_editor_absoluteY="228dp" />
-
-           <EditText
-               android:id="@+id/input_endTime"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:ems="10"
-               android:inputType="time" />
-
-       </LinearLayout>
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           tools:layout_editor_absoluteY="8dp"
-           tools:layout_editor_absoluteX="8dp">
-
-           <TextView
-               android:id="@+id/title_alert"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="End Time"
-               tools:layout_editor_absoluteX="262dp"
-               tools:layout_editor_absoluteY="228dp" />
-
-
-
-
-       </LinearLayout>
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           tools:layout_editor_absoluteY="8dp"
-           tools:layout_editor_absoluteX="8dp">
-
-           <Switch
-               android:id="@+id/switch_ringer"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="Ringer" />
-
-
-
-       </LinearLayout>
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           tools:layout_editor_absoluteY="8dp"
-           tools:layout_editor_absoluteX="8dp">
-
-           <Switch
-               android:id="@+id/switch_flash"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="Flash" />
-
-
-
-       </LinearLayout>
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           tools:layout_editor_absoluteY="8dp"
-           tools:layout_editor_absoluteX="8dp">
-
-           <Button
-               android:id="@+id/btn_activate"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="Activate" />
-
-           <Spinner
-               android:id="@+id/spinner"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:entries="@array/time_array"
-               android:prompt="@string/app_name"
-               android:layout_weight="1" />
-
-
-       </LinearLayout>
-
-
-
-
-   </LinearLayout>
-
-
 
 
 </android.support.constraint.ConstraintLayout>
