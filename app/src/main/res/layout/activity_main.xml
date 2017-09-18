@@ -44,9 +44,10 @@
 
             <TextView
                 android:id="@+id/title_start_time"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:minWidth="75dp"
                 android:text="Start Time"
                 tools:layout_editor_absoluteX="262dp"
                 tools:layout_editor_absoluteY="228dp" />
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/time_array"
-                android:minWidth="100dp"
+                android:minWidth="75dp"
                 android:prompt="@string/app_name" />
 
         </LinearLayout>
@@ -72,12 +73,11 @@
 
             <TextView
                 android:id="@+id/title_end_time"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="End Time"
-                tools:layout_editor_absoluteX="262dp"
-                tools:layout_editor_absoluteY="228dp" />
+                android:minWidth="75dp"
+                android:text="End Time" />
 
             <Spinner
                 android:id="@+id/spinnerEnd"
@@ -85,27 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/time_array"
-                android:minWidth="100dp"
+                android:minWidth="75dp"
                 android:prompt="@string/app_name" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp">
-
-            <TextView
-                android:id="@+id/title_alert"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="End Time"
-                tools:layout_editor_absoluteX="262dp"
-                tools:layout_editor_absoluteY="228dp" />
-
 
         </LinearLayout>
 
