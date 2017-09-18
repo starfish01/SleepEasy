@@ -18,16 +18,22 @@ class SharedPreferenceInformationManager {
 
 
      int getStartTime(){
-        SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
-
         return prefs.getInt("STARTTIME",22);
     }
 
      int getEndTime(){
-        SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
-
         return prefs.getInt("ENDTIME",2);
     }
+
+    void setStartTime(int startTime){
+        prefs.edit().putInt("STARTTIME",startTime).apply();
+    }
+
+    void setEndTime(int endTime){
+        prefs.edit().putInt("ENDTIME",endTime);
+    }
+
+
 
     boolean activationButton(){
         return prefs.getBoolean("ACTIVATED",false);

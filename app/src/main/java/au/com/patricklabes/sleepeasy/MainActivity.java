@@ -1,23 +1,21 @@
 package au.com.patricklabes.sleepeasy;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
-    private TextView textView, info2;
     private Button activateBtn;
     private Switch ringerSwitch, flashSwitch;
-    private int batteryPercent, pluggedIn;
-    private EditText inputStartTime, inputEndTime;
+    private Spinner spinnerStart, spinnerEnd;
+    BatteryChecker bc;
+
 
 
     SharedPreferenceInformationManager mI;
@@ -29,17 +27,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         mI = new SharedPreferenceInformationManager(this);
+        bc = new BatteryChecker();
 
+        //spinners
+        spinnerStart = (Spinner)findViewById(R.id.spinnerStart);
+        spinnerEnd = (Spinner)findViewById(R.id.spinnerEnd);
 
-        //switch to spinner one day
-        inputStartTime = (EditText)this.findViewById(R.id.input_startTime);
-        inputEndTime = (EditText)this.findViewById(R.id.input_endTime);
+        spinnerStart.setOnItemSelectedListener(this);
+        spinnerEnd.setOnItemSelectedListener(this);
+
 
         //
-
         activateBtn = (Button)this.findViewById(R.id.btn_activate);
         activateBtn.setOnClickListener(this);
 
@@ -50,21 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         canWeActivate();
 
-
-
-
-        //temp while i iron the rest out (probably switch to a spinner)
-        inputStartTime.setFocusable(false);
-        inputEndTime.setFocusable(false);
-
-
-
         buttonStates();
-
-
-
-
-
 
     }
 
@@ -95,8 +80,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void canWeActivate(){
         if (!mI.getRingerSwitch() && !mI.getFlashSwitch()){
+            if(mI.activationButton()){
+                activeBtnChecker();
+            }
             activateBtn.setEnabled(false);
         }else{
+            if(mI.activationButton()){
+                bc.setAlarm(getApplicationContext());
+                Toast.makeText(this,"Updated...", Toast.LENGTH_LONG).show();
+            }
+
             activateBtn.setEnabled(true);
         }
     }
@@ -113,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void activeBtnChecker(){
-        BatteryChecker bc = new BatteryChecker();
 
         if (!mI.activationButton()){
             bc.setAlarm(getApplicationContext());
@@ -139,15 +131,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mI.activationButton()){
             activateBtn.setText("Deactive");
             //need to start activation not sure this is any use to users because they wont be install over the top like my debugs are...
-            BatteryChecker bc = new BatteryChecker();
             bc.setAlarm(getApplicationContext());
         }
-        //Seting Times
-        inputStartTime.setText(String.valueOf(mI.getStartTime()));
-        inputEndTime.setText(String.valueOf(mI.getEndTime()));
+
 
         //Setting switch States
         ringerSwitch.setChecked(mI.getRingerSwitch());
         flashSwitch.setChecked(mI.getFlashSwitch());
+
+        //spinner set times
+        spinnerStart.setSelection(mI.getStartTime());
+        spinnerEnd.setSelection(mI.getEndTime());
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Spinner spinner = (Spinner) parent;
+
+        switch (spinner.getId()){
+            case R.id.spinnerStart:
+                mI.setStartTime(position);
+                break;
+            case R.id.spinnerEnd:
+                mI.setEndTime(position);
+                break;
+        }
+
+        if(mI.activationButton()){
+            Toast.makeText(this,"Updated...", Toast.LENGTH_LONG).show();
+            bc.setAlarm(getApplicationContext());
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
