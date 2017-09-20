@@ -44,7 +44,8 @@ public class BatteryChecker extends BroadcastReceiver {
 
 
         if(isCharging){
-            Log.d("Do we get here","6.1");
+            mI.setPauseFalse();
+            mI.setNotificationStatus(false);
             wl.release();
             return;
         }
@@ -76,7 +77,6 @@ public class BatteryChecker extends BroadcastReceiver {
             return;
         }
 
-        Log.d("Do we get here","9");
 
 
 
@@ -93,8 +93,6 @@ public class BatteryChecker extends BroadcastReceiver {
         //AlarmManager.setExact use to set to start recieving after certain time and then to cancel at
         //specified time
         // https://developer.android.com/reference/android/app/AlarmManager.html#setExact(int, long, android.app.PendingIntent)
-
-        Log.d("Do we get here","1");
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, BatteryChecker.class);
@@ -122,16 +120,13 @@ public class BatteryChecker extends BroadcastReceiver {
 
 
     private boolean checkIfItsTime(Context context){
-        Log.d("Do we get here","7.time1");
         mI = new SharedPreferenceInformationManager(context);
-        Log.d("Do we get here","7.time2");
 
         Calendar cal = Calendar.getInstance();
         int currentHour = cal.get(Calendar.HOUR_OF_DAY);
         int startTime = mI.getStartTime();
         int endTime = mI.getEndTime();
 
-        Log.d("Do we get here","7.time3");
         if (endTime != 0){
             endTime -= 1;
         }else{
@@ -152,7 +147,6 @@ public class BatteryChecker extends BroadcastReceiver {
             ticker.add(startTime);
         }
 
-        Log.d("Do we get here: 7",String.valueOf(ticker.contains(currentHour)));
 
         return ticker.contains(currentHour);
     }
