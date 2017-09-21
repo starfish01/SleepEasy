@@ -15,9 +15,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-/**
- * Created by patrick on 8/09/2017.
- */
 
 public class PhoneIsNotChargingAlert extends AppCompatActivity implements View.OnClickListener{
 

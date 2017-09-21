@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-/**
- * Created by patrick on 18/08/2017.
- */
 
 public class OnRebootChecker extends BroadcastReceiver {
     @Override
@@ -18,9 +15,7 @@ public class OnRebootChecker extends BroadcastReceiver {
         SharedPreferences prefs = context.getSharedPreferences("au.com.shifttech", 0);
         boolean activatedStatus = prefs.getBoolean("ACTIVATED",false);
 
-        if (!activatedStatus){
-
-        }else{
+        if (activatedStatus){
             BatteryChecker bc = new BatteryChecker();
             bc.setAlarm(context);
         }

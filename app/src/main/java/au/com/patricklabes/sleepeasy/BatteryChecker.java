@@ -7,22 +7,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.StringTokenizer;
 
-/**
- * Created by patrick on 4/08/2017.
- */
+import static android.content.Context.POWER_SERVICE;
+
 
 public class BatteryChecker extends BroadcastReceiver {
 
@@ -32,14 +26,21 @@ public class BatteryChecker extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        PowerManager pm =(PowerManager) context.getSystemService(context.POWER_SERVICE);
+        PowerManager pm =(PowerManager) context.getSystemService(POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"");
         wl.acquire();
 
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.getApplicationContext().registerReceiver(null, ifilter);
 
-        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+
+        int status = 0;
+        try {
+            status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
 
 
@@ -158,20 +159,6 @@ public class BatteryChecker extends BroadcastReceiver {
         NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(852,builder.build());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -8,10 +8,8 @@ import android.util.Log;
 class SharedPreferenceInformationManager {
 
     private SharedPreferences prefs;
-    private Context context;
 
      SharedPreferenceInformationManager(Context context){
-        this.context = context;
          prefs = context.getSharedPreferences("au.com.shifttech", 0);
 
     }
@@ -30,7 +28,7 @@ class SharedPreferenceInformationManager {
     }
 
     void setEndTime(int endTime){
-        prefs.edit().putInt("ENDTIME",endTime);
+        prefs.edit().putInt("ENDTIME",endTime).apply();
     }
 
 
@@ -83,10 +81,6 @@ class SharedPreferenceInformationManager {
     }
 
     void setPauseFalse(){
-        prefs.edit().putBoolean("PAUSE_ALERT",false).apply();
-    }
-
-    void resetPause(){
         prefs.edit().putBoolean("PAUSE_ALERT",false).apply();
     }
 

@@ -1,27 +1,17 @@
 package au.com.patricklabes.sleepeasy;
 
 
-import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-import android.widget.Toast;
 
 public class NotificationHandler {
 
 
-
-
-
-
     public NotificationCompat.Builder notificationWarning(Context context){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-
-        //Intent notificationIntent = new Intent(context, MainActivity.class);
 
         Intent notificationIntent = new Intent(context,NotificationHandlerOnClick.class);
 

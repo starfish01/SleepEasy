@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Sleep Easy</string>
+    <string name="update">Updating&#8230;</string>
+    <string name="deactivated">Deactivated</string>
+    <string name="activated">Activated</string>
+    <string name="activate">Activate</string>
+    <string name="deactivate">Deactivate</string>
+    <string name="pause_alert">Pause Alert</string>
+    <string name="activitymain_title">Times to check between</string>
+    <string name="activitymain_starttime">Start Time</string>
+    <string name="activitymain_endtime">End Time</string>
+    <string name="activitymain_rinnger">Alarm Alert</string>
+    <string name="activitymain_flasher">Screen Alert</string>
+
 
     <string-array name="time_array">
         <item>0</item>

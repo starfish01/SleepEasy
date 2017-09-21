@@ -2,7 +2,6 @@ package au.com.patricklabes.sleepeasy;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -109,13 +108,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (!mI.activationButton()){
             bc.setAlarm(getApplicationContext());
-            activateBtn.setText("Deactivate");
-            Toast.makeText(this,"Active", Toast.LENGTH_LONG).show();
+            activateBtn.setText(R.string.deactivate);
+            Toast.makeText(this,R.string.activated, Toast.LENGTH_LONG).show();
             mI.changeActivationButtonStatus(true);
         }else{
             bc.cancelAlarm(getApplicationContext());
-            activateBtn.setText("Activate");
-            Toast.makeText(this,"Deactivated", Toast.LENGTH_LONG).show();
+            activateBtn.setText(R.string.activate);
+            Toast.makeText(this,R.string.deactivated, Toast.LENGTH_LONG).show();
             mI.changeActivationButtonStatus(false);
         }
 
@@ -129,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Activation Button
         if (mI.activationButton()){
-            activateBtn.setText("Deactive");
+            activateBtn.setText(R.string.deactivate);
             //need to start activation not sure this is any use to users because they wont be install over the top like my debugs are...
             bc.setAlarm(getApplicationContext());
         }
@@ -159,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(mI.activationButton()){
-            Toast.makeText(this,"Updated...", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.update, Toast.LENGTH_LONG).show();
             bc.setAlarm(getApplicationContext());
         }
 
