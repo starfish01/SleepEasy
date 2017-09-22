@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
 import static android.content.Context.POWER_SERVICE;
 
 
@@ -33,6 +34,7 @@ public class BatteryChecker extends BroadcastReceiver {
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.getApplicationContext().registerReceiver(null, ifilter);
 
+        mI = new SharedPreferenceInformationManager(context);
 
         int status = 0;
         try {
@@ -156,7 +158,7 @@ public class BatteryChecker extends BroadcastReceiver {
     private void fireNotification(Context context){
         NotificationHandler notification = new NotificationHandler();
         NotificationCompat.Builder builder = notification.notificationWarning(context);
-        NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager)context.getSystemService(NOTIFICATION_SERVICE);
         manager.notify(852,builder.build());
     }
 

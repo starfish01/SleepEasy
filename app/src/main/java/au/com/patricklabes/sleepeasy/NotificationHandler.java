@@ -38,6 +38,8 @@ public class NotificationHandler {
     }
 
     public void cancelTheNotification(Context context){
+
+
         NotificationManager mN = (NotificationManager)context.getSystemService(context.NOTIFICATION_SERVICE);
         mN.cancel(852);
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,8 +12,8 @@
         android:layout_height="495dp"
         android:orientation="vertical"
 
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="13dp">
 
 
         <LinearLayout
@@ -25,7 +26,7 @@
             <TextView
                 android:id="@+id/title_Times_to_check_between"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="@string/activitymain_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 tools:layout_editor_absoluteX="262dp"
@@ -36,17 +37,15 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
             <TextView
                 android:id="@+id/title_start_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minWidth="75dp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
                 android:text="@string/activitymain_starttime"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 tools:layout_editor_absoluteX="262dp"
@@ -66,15 +65,15 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
             <TextView
                 android:id="@+id/title_end_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:minWidth="75dp"
                 android:text="@string/activitymain_endtime"
@@ -92,15 +91,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
             <Switch
                 android:id="@+id/switch_ringer"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/activitymain_rinnger" />
@@ -109,15 +108,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
             <Switch
                 android:id="@+id/switch_flash"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/activitymain_flasher" />
@@ -127,19 +126,37 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
+            android:layout_height="40dp"
             android:layout_weight="1"
+            android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
             <Button
                 android:id="@+id/btn_activate"
                 style="@style/Widget.AppCompat.Button"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/activate"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center">
+
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-1588318060537144/4535445656">
+            </com.google.android.gms.ads.AdView>
 
 
         </LinearLayout>
