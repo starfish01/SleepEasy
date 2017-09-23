@@ -1,6 +1,7 @@
 package au.com.patricklabes.sleepeasy;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -159,7 +160,25 @@ public class BatteryChecker extends BroadcastReceiver {
         NotificationHandler notification = new NotificationHandler();
         NotificationCompat.Builder builder = notification.notificationWarning(context);
         NotificationManager manager = (NotificationManager)context.getSystemService(NOTIFICATION_SERVICE);
+
+        //setting up notification channel
+        String id = "sleep_easy_channel_01";
+        CharSequence name = "Sleep Easy";
+        String description = "Do we need to charge?";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        //continue here
+        //https://developer.android.com/guide/topics/ui/notifiers/notifications.html
+
+
+
         manager.notify(852,builder.build());
+
+        //this is for sound but not sure if i will need after notification channel is set up
+        Notification notify = new Notification();
+        notify.defaults = Notification.DEFAULT_ALL;
+
+
+
     }
 
 
