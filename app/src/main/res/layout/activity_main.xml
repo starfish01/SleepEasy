@@ -17,8 +17,9 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
@@ -27,6 +28,9 @@
                 android:id="@+id/title_Times_to_check_between"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|center"
+                android:hapticFeedbackEnabled="false"
                 android:text="@string/activitymain_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 tools:layout_editor_absoluteX="262dp"
