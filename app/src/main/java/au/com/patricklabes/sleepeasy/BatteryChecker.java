@@ -1,13 +1,16 @@
 package au.com.patricklabes.sleepeasy;
 
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
@@ -171,11 +174,22 @@ public class BatteryChecker extends BroadcastReceiver {
 
 
 
+        NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+        mChannel.setDescription(description);
+        mChannel.enableLights(true);
+        mChannel.setLightColor(Color.RED);
+        mChannel.enableVibration(true);
+
+
+        manager.createNotificationChannel(mChannel);
+
+
+
         manager.notify(852,builder.build());
 
         //this is for sound but not sure if i will need after notification channel is set up
-        Notification notify = new Notification();
-        notify.defaults = Notification.DEFAULT_ALL;
+        //Notification notify = new Notification();
+        //notify.defaults = Notification.DEFAULT_ALL;
 
 
 
