@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#B38F00</color>
     <color name="colorAccent">#FF4081</color>
     <color name="actionBarText">#000000</color>
-    <color name="splashBG">#006666</color>
+    <color name="splashBG">#f1f442</color>
 </resources>
