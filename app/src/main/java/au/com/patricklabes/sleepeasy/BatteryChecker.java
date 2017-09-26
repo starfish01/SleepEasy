@@ -40,6 +40,7 @@ public class BatteryChecker extends BroadcastReceiver {
 
         mI = new SharedPreferenceInformationManager(context);
 
+
         int status = 0;
         try {
             status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
