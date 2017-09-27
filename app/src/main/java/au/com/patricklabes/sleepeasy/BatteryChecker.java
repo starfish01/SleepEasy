@@ -1,8 +1,6 @@
 package au.com.patricklabes.sleepeasy;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -70,13 +68,9 @@ public class BatteryChecker extends BroadcastReceiver {
                 return;
             }else if(!mI.positionPause()) {
                 //fire alert not connected
-
                 Intent intent1 = new Intent(context,PhoneIsNotChargingAlert.class);
                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                 context.startActivity(intent1);
-
-
             }
         } else {
             mI.setPauseFalse();
@@ -84,38 +78,16 @@ public class BatteryChecker extends BroadcastReceiver {
             wl.release();
             return;
         }
-
-
-
-
-
-
-
         wl.release();
-
-
     }
 
     public void setAlarm(Context context){
-
-        //AlarmManager.setExact use to set to start recieving after certain time and then to cancel at
-        //specified time
-        // https://developer.android.com/reference/android/app/AlarmManager.html#setExact(int, long, android.app.PendingIntent)
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, BatteryChecker.class);
         PendingIntent pi = PendingIntent.getBroadcast(context,0,i,0);
 
-        //every minute for testing
-        //am.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),60000,pi);
-
         am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
-
-
-
-
-
-
 
     }
 
@@ -174,15 +146,16 @@ public class BatteryChecker extends BroadcastReceiver {
         //https://developer.android.com/guide/topics/ui/notifiers/notifications.html
 
 
+        //only for android o and above
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel =  mChannel = new NotificationChannel(id, name, importance);
+            mChannel.setDescription(description);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(Color.RED);
+            mChannel.enableVibration(true);
+            manager.createNotificationChannel(mChannel);
+        }
 
-        NotificationChannel mChannel = new NotificationChannel(id, name, importance);
-        mChannel.setDescription(description);
-        mChannel.enableLights(true);
-        mChannel.setLightColor(Color.RED);
-        mChannel.enableVibration(true);
-
-
-        manager.createNotificationChannel(mChannel);
 
 
 
