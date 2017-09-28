@@ -2,9 +2,11 @@ package au.com.patricklabes.sleepeasy;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BatteryChecker bc;
     private AdView mAdView;
     SharedPreferenceInformationManager mI;
+    private RadioButton mon_radioButton,tue_radioButton,wed_radioButton,thur_radioButton,fri_radioButton,sat_radioButton,sun_radioButton;
 
 
 
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initializeRadioButtons();
 
         MobileAds.initialize(this, "ca-app-pub-1588318060537144/4535445656");
         mAdView = (AdView) findViewById(R.id.adView);
@@ -60,7 +65,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void initializeRadioButtons() {
+        mon_radioButton = findViewById(R.id.radio_monday);
+        tue_radioButton = findViewById(R.id.radio_tuesday);
+        wed_radioButton = findViewById(R.id.radio_wednesday);
+        thur_radioButton = findViewById(R.id.radio_thursday);
+        fri_radioButton = findViewById(R.id.radio_friday);
+        sat_radioButton = findViewById(R.id.radio_saturday);
+        sun_radioButton = findViewById(R.id.radio_sunday);
 
+        mon_radioButton.setOnClickListener(this);
+        tue_radioButton.setOnClickListener(this);
+        wed_radioButton.setOnClickListener(this);
+        thur_radioButton.setOnClickListener(this);
+        fri_radioButton.setOnClickListener(this);
+        sat_radioButton.setOnClickListener(this);
+        sun_radioButton.setOnClickListener(this);
+    }
 
 
     @Override
@@ -79,11 +100,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  break;
              case R.id.btn_activate:
                  activeBtnChecker();
-
-
                  break;
 
+             case R.id.radio_monday:
+                break;
+             case R.id.radio_tuesday:
+                 break;
+             case R.id.radio_wednesday:
+                 break;
+             case R.id.radio_thursday:
+                 break;
+             case R.id.radio_friday:
+                 break;
+             case R.id.radio_saturday:
+                 break;
+             case R.id.radio_sunday:
+                 break;
+
+
+
          }
+
+
 
     }
 
