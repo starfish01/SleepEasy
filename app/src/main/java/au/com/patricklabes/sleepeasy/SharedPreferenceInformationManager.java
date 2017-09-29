@@ -31,8 +31,6 @@ class SharedPreferenceInformationManager {
         prefs.edit().putInt("ENDTIME",endTime).apply();
     }
 
-
-
     boolean activationButton(){
         return prefs.getBoolean("ACTIVATED",false);
     }
@@ -86,6 +84,15 @@ class SharedPreferenceInformationManager {
 
     boolean positionPause(){
         return prefs.getBoolean("PAUSE_ALERT",false);
+    }
+
+
+    void setRadioButton(String day, boolean position){
+        prefs.edit().putBoolean(day,position).apply();
+    }
+
+    boolean getRadioButtonPosition(String day){
+        return prefs.getBoolean(day, false);
     }
 
 

@@ -2,7 +2,6 @@ package au.com.patricklabes.sleepeasy;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -86,39 +85,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        DaySelection dSRB = new DaySelection(v.getContext());
+        String idValue = String.valueOf(v.getId());
 
          switch (v.getId()){
              case R.id.switch_flash:
                  switchButtonChecker("FLASH");
-                 canWeActivate();
-
                  break;
              case R.id.switch_ringer:
                  switchButtonChecker("RINGER");
-                 canWeActivate();
-
                  break;
              case R.id.btn_activate:
                  activeBtnChecker();
                  break;
-
              case R.id.radio_monday:
+                 dSRB.radioButtonSelected("Mon");
+                 mon_radioButton.setChecked(mI.getRadioButtonPosition("Mon"));
                 break;
              case R.id.radio_tuesday:
+                 dSRB.radioButtonSelected("Tue");
+                 tue_radioButton.setChecked(mI.getRadioButtonPosition("Tue"));
                  break;
              case R.id.radio_wednesday:
+                 dSRB.radioButtonSelected("Wed");
+                 wed_radioButton.setChecked(mI.getRadioButtonPosition("Wed"));
                  break;
              case R.id.radio_thursday:
+                 dSRB.radioButtonSelected("Thu");
+                 thur_radioButton.setChecked(mI.getRadioButtonPosition("Thu"));
                  break;
              case R.id.radio_friday:
+                 dSRB.radioButtonSelected("Fri");
+                 fri_radioButton.setChecked(mI.getRadioButtonPosition("Fri"));
                  break;
              case R.id.radio_saturday:
+                 dSRB.radioButtonSelected("Sat");
+                 sat_radioButton.setChecked(mI.getRadioButtonPosition("Sat"));
                  break;
              case R.id.radio_sunday:
+                 dSRB.radioButtonSelected("Sun");
+                 sun_radioButton.setChecked(mI.getRadioButtonPosition("Sun"));
                  break;
+         }
 
 
 
+
+         if(v.getId() != R.id.btn_activate){
+             canWeActivate();
          }
 
 
@@ -183,6 +197,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             bc.setAlarm(getApplicationContext());
         }
 
+        //radio buttons
+        mon_radioButton.setChecked(mI.getRadioButtonPosition("Mon"));
+        tue_radioButton.setChecked(mI.getRadioButtonPosition("Tue"));
+        wed_radioButton.setChecked(mI.getRadioButtonPosition("Wed"));
+        thur_radioButton.setChecked(mI.getRadioButtonPosition("Thu"));
+        fri_radioButton.setChecked(mI.getRadioButtonPosition("Fri"));
+        sat_radioButton.setChecked(mI.getRadioButtonPosition("Sat"));
+        sun_radioButton.setChecked(mI.getRadioButtonPosition("Sun"));
 
         //Setting switch States
         ringerSwitch.setChecked(mI.getRingerSwitch());

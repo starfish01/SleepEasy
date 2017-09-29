@@ -13,8 +13,10 @@ import android.os.BatteryManager;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -49,7 +51,16 @@ public class BatteryChecker extends BroadcastReceiver {
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
 
 
+
         if(isCharging){
+            mI.setPauseFalse();
+            mI.setNotificationStatus(false);
+            wl.release();
+            return;
+        }
+
+
+        if(datesHasBeenSelected(context)){
             mI.setPauseFalse();
             mI.setNotificationStatus(false);
             wl.release();
@@ -81,12 +92,24 @@ public class BatteryChecker extends BroadcastReceiver {
         wl.release();
     }
 
+    private boolean datesHasBeenSelected(Context context) {
+        Date today = Calendar.getInstance().getTime();
+        SimpleDateFormat format = new SimpleDateFormat("E");
+        String todaysDate = format.format(today);
+
+        if(mI.getRadioButtonPosition(todaysDate)){
+            return true;
+        }else
+            return false;
+    }
+
     public void setAlarm(Context context){
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, BatteryChecker.class);
         PendingIntent pi = PendingIntent.getBroadcast(context,0,i,0);
 
+        //am.setExact(AlarmManager.RTC_WAKEUP, 10000, pi);
         am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
 
     }
