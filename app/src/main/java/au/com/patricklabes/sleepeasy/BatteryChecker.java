@@ -109,7 +109,7 @@ public class BatteryChecker extends BroadcastReceiver {
         Intent i = new Intent(context, BatteryChecker.class);
         PendingIntent pi = PendingIntent.getBroadcast(context,0,i,0);
 
-        //am.setExact(AlarmManager.RTC_WAKEUP, 10000, pi);
+        //am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 10000, pi);
         am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_HALF_HOUR, pi);
 
     }
