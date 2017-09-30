@@ -92,7 +92,7 @@ class SharedPreferenceInformationManager {
     }
 
     boolean getRadioButtonPosition(String day){
-        return prefs.getBoolean(day, false);
+        return prefs.getBoolean(day, true);
     }
 
 

@@ -60,7 +60,7 @@ public class BatteryChecker extends BroadcastReceiver {
         }
 
 
-        if(datesHasBeenSelected(context)){
+        if(!datesHasBeenSelected(context)){
             mI.setPauseFalse();
             mI.setNotificationStatus(false);
             wl.release();
