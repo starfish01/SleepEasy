@@ -10,9 +10,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
@@ -33,10 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initializeRadioButtons();
 
+        /*
         MobileAds.initialize(this, "ca-app-pub-1588318060537144/4535445656");
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        */
 
         mI = new SharedPreferenceInformationManager(this);
         bc = new BatteryChecker();

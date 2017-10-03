@@ -49,10 +49,10 @@ public class BatteryChecker extends BroadcastReceiver {
         }
 
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
+        boolean isCharged = status == BatteryManager.BATTERY_STATUS_FULL;
 
 
-
-        if(isCharging){
+        if(isCharging || isCharged){
             mI.setPauseFalse();
             mI.setNotificationStatus(false);
             wl.release();
