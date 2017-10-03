@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         DaySelection dSRB = new DaySelection(v.getContext());
-        String idValue = String.valueOf(v.getId());
 
          switch (v.getId()){
              case R.id.switch_flash:
