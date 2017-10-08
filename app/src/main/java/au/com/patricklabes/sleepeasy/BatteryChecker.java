@@ -51,10 +51,16 @@ public class BatteryChecker extends BroadcastReceiver {
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
         boolean isCharged = status == BatteryManager.BATTERY_STATUS_FULL;
 
+        int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
 
-        if(isCharging || isCharged){
+        if(isCharging || isCharged ){
             mI.setPauseFalse();
             mI.setNotificationStatus(false);
+            wl.release();
+            return;
+        }
+
+        if(level > 90){
             wl.release();
             return;
         }
