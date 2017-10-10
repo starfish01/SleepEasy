@@ -190,10 +190,6 @@ public class BatteryChecker extends BroadcastReceiver {
 
         manager.notify(852,builder.build());
 
-        //this is for sound but not sure if i will need after notification channel is set up
-        //Notification notify = new Notification();
-        //notify.defaults = Notification.DEFAULT_ALL;
-
 
 
     }
