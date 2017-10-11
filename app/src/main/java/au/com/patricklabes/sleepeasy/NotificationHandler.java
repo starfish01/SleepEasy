@@ -11,7 +11,7 @@ public class NotificationHandler {
 
 
     public NotificationCompat.Builder notificationWarning(Context context){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"6969");
 
         Intent notificationIntent = new Intent(context,NotificationHandlerOnClick.class);
 
@@ -21,7 +21,6 @@ public class NotificationHandler {
         NotificationCompat.Action action = new NotificationCompat.Action(
                 R.drawable.ic_alarm_off,
                 "Pause Alert",contentIntent);
-
 
                 builder.setSmallIcon(R.drawable.ic_battery_unknown)
                 .setContentTitle("Sleep Easy")
